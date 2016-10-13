@@ -1,0 +1,21 @@
+﻿<Window x:Class="FindWayGame.WelcomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FindWayGame"
+        mc:Ignorable="d"
+        Title="Welcome" Height="300" Width="300" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="185*"/>
+            <RowDefinition Height="86*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="1" x:Name="btnNewbee" Margin="10" Content="I'm a newbee..." Click="btnNewbee_Click"/>
+        <DockPanel LastChildFill="True">
+            <TextBox DockPanel.Dock="Top" x:Name="txtNickname" Margin="10"/>
+            <TextBox DockPanel.Dock="Top" x:Name="txtPassword" Margin="10"/>
+            <Button x:Name="btnConfirm" Margin="10" Content="GO!" Click="btnConfirm_Click"/>
+        </DockPanel>
+    </Grid>
+</Window>
