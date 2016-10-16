@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Width="453.443" Height="210.109" Clip="F1 M 0,0L 453.443,0L 453.443,210.109L 0,210.109L 0,0">
+	<Path Width="453.474" Height="210.193" Canvas.Left="-0.0071074" Canvas.Top="-0.0813376" Stretch="Fill" Data="F1 M 245.45,96.8457L 450.807,139.237C 450.807,139.237 481.021,34.7556 337.771,8.42041C 194.52,-17.9148 58.8764,22.5515 23.3808,53.3829C -12.1148,84.2143 -56.4842,210.752 299.74,210.109C 320.673,210.072 245.689,96.8947 245.45,96.8457 Z ">
+		<Path.Fill>
+			<RadialGradientBrush RadiusX="0.608352" RadiusY="0.634105" Center="0.515634,0.486603" GradientOrigin="0.515634,0.486603">
+				<RadialGradientBrush.GradientStops>
+					<GradientStop Color="#FFECF8D1" Offset="0.027907"/>
+					<GradientStop Color="#FFD9ECB7" Offset="0.146512"/>
+					<GradientStop Color="#FFC6E19D" Offset="0.260465"/>
+					<GradientStop Color="#FFB2D465" Offset="0.510326"/>
+					<GradientStop Color="#FF9FC82D" Offset="0.627907"/>
+					<GradientStop Color="#FF6E901F" Offset="0.785115"/>
+					<GradientStop Color="#FF3E5912" Offset="0.930233"/>
+				</RadialGradientBrush.GradientStops>
+				<RadialGradientBrush.RelativeTransform>
+					<TransformGroup>
+						<SkewTransform CenterX="0.515634" CenterY="0.486603" AngleX="4.4152" AngleY="0"/>
+						<RotateTransform CenterX="0.515634" CenterY="0.486603" Angle="32.2566"/>
+					</TransformGroup>
+				</RadialGradientBrush.RelativeTransform>
+			</RadialGradientBrush>
+		</Path.Fill>
+	</Path>
+</Canvas>

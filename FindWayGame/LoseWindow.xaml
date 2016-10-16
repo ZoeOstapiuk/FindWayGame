@@ -10,10 +10,12 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="94*"/>
+                <RowDefinition Height="50*"/>
                 <RowDefinition Height="177*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35">We are sorry...</Label>
-            <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Try again! The field is preserved</Label>
+            <StackPanel VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
                 <Button Content="It's okay..." Background="White" Margin="20" Click="Button_Click"/>
                 <Button x:Name="btnRegister" Content="I would like to register" Margin="20" Click="btnRegister_Click"></Button>
             </StackPanel>

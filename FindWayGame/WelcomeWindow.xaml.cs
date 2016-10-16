@@ -30,10 +30,6 @@ namespace FindWayGame
                     MainWindow main = new MainWindow(this.txtNickname.Text)
                     {
                         PlayerId = player.PlayerId,
-                        Info = new GameInfo
-                        {
-                            IsWon = false,
-                        }
                     };
                     main.Show();
                     this.Close();
@@ -44,10 +40,7 @@ namespace FindWayGame
         private void btnNewbee_Click(object sender, RoutedEventArgs e)
         {
             // Player and GameInfo are null
-            MainWindow main = new MainWindow(null)
-            {
-                Info = new GameInfo()
-            };
+            MainWindow main = new MainWindow(null);
             main.Show();
             this.Close();
         }
