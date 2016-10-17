@@ -12,27 +12,48 @@ namespace FindWayGame
     {
         private const string NOT_REGISTERED_STRING = "Not registered";
         private Point currentPosition;
+        private int? playerId;
 
-        public int? PlayerId { get; set; }
+        public int? PlayerId
+        {
+            get
+            {
+                return playerId;
+            }
+            set
+            {
+                if (!value.HasValue)
+                {
+                    playerId = null;
+                    this.lblNickname.Content = NOT_REGISTERED_STRING;
+                    return;
+                }
 
-        public GameInfo Info { get; set; }
+                using (GameContext ctx = new GameContext())
+                {
+                    Player player = ctx.Players.Find(value.Value);
+                    if (player == null)
+                    {
+                        playerId = null;
+                        this.lblNickname.Content = NOT_REGISTERED_STRING;
+                    }
+                    else
+                    {
+                        playerId = value;
+                        this.lblNickname.Content = player.Nickname;
+                    }
+                } 
+            }
+        }
+
+        public GameInfo Game { get; set; }
 
         // Use generateGamefieldMatrix()
         public bool[,] Field { get; set; }
 
-        public MainWindow(string nickname)
+        public MainWindow()
         {
             InitializeComponent();
-
-            if (nickname != null)
-            {
-                this.lblNickname.Content = nickname;
-            }
-            else
-            {
-                this.lblNickname.Content = NOT_REGISTERED_STRING;
-            }
-            
             newGame();
         }
 
@@ -42,12 +63,66 @@ namespace FindWayGame
             checkMatch(btn);
         }
 
+        private void onLost()
+        {
+            LoseWindow lost = new LoseWindow();
+            lost.ShowDialog();
+
+            Game.Attempts++;
+            clearAllCells();
+        }
+
+        private void onWin()
+        {
+            CongratWindow cong = new CongratWindow(AddGameToDb());
+
+            // Player wants to register
+            if (cong.ShowDialog() == true)
+            {
+                RegisterWindow reg = new RegisterWindow(Game);
+                reg.ShowDialog();
+                PlayerId = reg.JustRegisteredPlayerId;
+            }
+
+            newGame();
+        }
+       
+        private bool AddGameToDb()
+        {
+            if (!PlayerId.HasValue)
+            {
+                return false;
+            }
+
+            using (GameContext ctx = new GameContext())
+            {
+                ctx.Players.Find(PlayerId.Value).Games.Add(Game);
+                MessageBox.Show(ctx.SaveChanges().ToString());
+            }
+
+            return true;
+        }
+
+        private string getNicknameById(int id)
+        {
+            string nickname = null;
+            using (GameContext ctx = new GameContext())
+            {
+                nickname = ctx.Players.Find(id).Nickname;
+            }
+
+            return nickname;
+        }
+
+        #region Game set up functions
         private void clearAllCells()
         {
             currentPosition.X = 0;
             currentPosition.Y = 0;
+
             (gameGrid.Children[0] as Button).Content = Application.Current.FindResource("waterlilyWithFrog");
             (gameGrid.Children[this.gameGrid.Children.Count - 1] as Button).Content = Application.Current.FindResource("waterlilyWithPrincess");
+            (gameGrid.Children[this.gameGrid.Children.Count - 1] as Button).IsEnabled = true;
 
             for (int i = 1; i < this.gameGrid.Children.Count - 1; i++)
             {
@@ -58,7 +133,7 @@ namespace FindWayGame
 
         private void newGame()
         {
-            Info = new GameInfo();
+            Game = new GameInfo();
             clearAllCells();
             generateGamefieldMatrix();
         }
@@ -124,8 +199,8 @@ namespace FindWayGame
 
                 index++;
             }
-            
-            int y = index < this.gameGrid.RowDefinitions.Count ? index : index % this.gameGrid.RowDefinitions.Count; 
+
+            int y = index < this.gameGrid.RowDefinitions.Count ? index : index % this.gameGrid.RowDefinitions.Count;
             int x = index / this.gameGrid.RowDefinitions.Count;
 
             if (Math.Abs(y - (int)currentPosition.Y) > 1 || Math.Abs(x - (int)currentPosition.X) > 1)
@@ -146,9 +221,7 @@ namespace FindWayGame
                     (int)currentPosition.X == this.gameGrid.ColumnDefinitions.Count - 1)
                 {
                     sender.Content = Application.Current.FindResource("waterlilyWithBoth");
-                    CongratWindow cong = new CongratWindow(PlayerId, Info);
-                    cong.ShowDialog();
-                    newGame();
+                    onWin();
                 }
                 else
                 {
@@ -158,11 +231,9 @@ namespace FindWayGame
             else
             {
                 sender.Content = Application.Current.FindResource("waves");
-
-                LoseWindow lost = new LoseWindow(PlayerId, Info);
-                lost.ShowDialog();
-                clearAllCells();
+                onLost();
             }
         }
+        #endregion
     }
 }

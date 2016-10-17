@@ -5,17 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FindWayGame"
         mc:Ignorable="d"
-        Title="Welcome" Height="300" Width="300" ResizeMode="NoResize">
+        Title="Welcome" Height="300" Width="500" ResizeMode="NoResize">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="185*"/>
-            <RowDefinition Height="86*"/>
-        </Grid.RowDefinitions>
-        <Button Grid.Row="1" x:Name="btnNewbee" Margin="10" Content="I'm a newbee..." Click="btnNewbee_Click"/>
-        <DockPanel LastChildFill="True">
-            <TextBox DockPanel.Dock="Top" x:Name="txtNickname" Margin="10"/>
-            <TextBox DockPanel.Dock="Top" x:Name="txtPassword" Margin="10"/>
-            <Button x:Name="btnConfirm" Margin="10" Content="GO!" Click="btnConfirm_Click"/>
-        </DockPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="Help me save my princess!"/>
+            <Label Grid.Row="1" Content="{StaticResource frog}"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="1" x:Name="btnNewbee" Margin="10" Content="I'm a newbee..." Click="btnNewbee_Click" Template="{StaticResource roundButton}"/>
+            <Label Grid.Row="0" Content="{StaticResource playerSays}"/>
+            <DockPanel LastChildFill="True" Grid.Row="0" Margin="40 30 40 30">
+                <Grid DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="9*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="   I am"/>
+                    <TextBox Grid.Column="1" x:Name="txtNickname" Margin="4 3 10 2"/>
+                </Grid>
+                <Grid DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="9*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label>my pass</Label>
+                    <TextBox Grid.Column="1" x:Name="txtPassword" Margin="4 3 10 2"/>
+                </Grid>
+                <Button x:Name="btnConfirm" Margin="10 0 10 10" Content="I'm ready!" Click="btnConfirm_Click" Template="{StaticResource roundButton}">
+                    <Button.Background>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FFFDFFFF" Offset="0"/>
+                            <GradientStop Color="#4C9BEED9" Offset="1"/>
+                            <GradientStop Color="#FF94E0E0" Offset="0.651"/>
+                            <GradientStop Color="#7F82F1D7" Offset="0.78"/>
+                            <GradientStop Color="#FFA3ECD9" Offset="0.456"/>
+                        </RadialGradientBrush>
+                    </Button.Background>
+                </Button>
+            </DockPanel>
+        </Grid>
     </Grid>
 </Window>

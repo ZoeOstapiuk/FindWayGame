@@ -20,22 +20,11 @@ namespace FindWayGame
     /// </summary>
     public partial class CongratWindow : Window
     {
-        public GameInfo Game { get; set; }
-
-        public CongratWindow(int? id, GameInfo info)
+        public CongratWindow(bool registered)
         {
             InitializeComponent();
-
-            Game = info;
-            if (id.HasValue)
+            if (registered)
             {
-                using (GameContext ctx = new GameContext())
-                {
-                    var player = ctx.Players.Find(id.Value);
-                    player.Games.Add(info);
-                    ctx.SaveChanges();
-                }
-
                 this.btnRegister.Visibility = Visibility.Collapsed;
             }
             else
@@ -51,11 +40,7 @@ namespace FindWayGame
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow register = new RegisterWindow
-            {
-                Game = this.Game
-            };
-            register.Show();
+            this.DialogResult = true;
             this.Close();
         }
     }

@@ -5,19 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FindWayGame"
         mc:Ignorable="d"
-        Title="Sorry..." Height="300" Width="300" ResizeMode="NoResize">
+        Title="Sorry..." Height="300" Width="310" ResizeMode="NoResize">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="94*"/>
-                <RowDefinition Height="50*"/>
-                <RowDefinition Height="177*"/>
+                <RowDefinition Height="80*"/>
+                <RowDefinition Height="70*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35">We are sorry...</Label>
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Try again! The field is preserved</Label>
             <StackPanel VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
-                <Button Content="It's okay..." Background="White" Margin="20" Click="Button_Click"/>
-                <Button x:Name="btnRegister" Content="I would like to register" Margin="20" Click="btnRegister_Click"></Button>
+                <Button Content="It's okay, I'll try again..." Background="White" Margin="20" Click="Button_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

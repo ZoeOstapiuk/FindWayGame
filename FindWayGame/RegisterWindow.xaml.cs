@@ -22,7 +22,10 @@ namespace FindWayGame
     {
         public GameInfo Game { get; set; }
 
-        public RegisterWindow()
+        // Used for feedback to main window
+        public int? JustRegisteredPlayerId { get; set; }
+
+        public RegisterWindow(GameInfo game)
         {
             InitializeComponent();
         }
@@ -50,7 +53,7 @@ namespace FindWayGame
                     ctx.Players.Add(player);
                     ctx.SaveChanges();
 
-                    // TODO: Refresh main window
+                    JustRegisteredPlayerId = player.PlayerId;
                 }
             }
 

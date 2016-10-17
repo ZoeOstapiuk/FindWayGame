@@ -13,13 +13,8 @@ namespace FindWayGame.Entities
         [Key]
         public int GameId { get; set; }
 
-        public double Duration { get; set; }
-
-        public bool IsWon { get; set; }
+        public int Attempts { get; set; }
 
         public virtual Player Player { get; set; }
-
-        [NotMapped]
-        public int GuessedCells { get; set; }
     }
 }
