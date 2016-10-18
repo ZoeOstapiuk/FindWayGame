@@ -97,7 +97,7 @@ namespace FindWayGame
             using (GameContext ctx = new GameContext())
             {
                 ctx.Players.Find(PlayerId.Value).Games.Add(Game);
-                MessageBox.Show(ctx.SaveChanges().ToString());
+                ctx.SaveChanges();
             }
 
             return true;

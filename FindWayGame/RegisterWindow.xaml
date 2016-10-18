@@ -7,8 +7,20 @@
         mc:Ignorable="d"
         Title="Register" Height="300" Width="300" ResizeMode="NoResize">
     <DockPanel LastChildFill="True">
-        <TextBox x:Name="txtNickname" DockPanel.Dock="Top" Margin="10"/>
-        <TextBox x:Name="txtPassword" DockPanel.Dock="Top" Margin="10"/>
-        <Button x:Name="btnAdd" Content="I'M READY!" Click="btnAdd_Click"/>
+        <Grid DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="29*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Nickname" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Password" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtNickname" Margin="10"/>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPassword" Margin="10"/>
+        </Grid>
+        <Button x:Name="btnAdd" Content="I'M READY!" Click="btnAdd_Click" Template="{StaticResource roundButton}" Margin="15"/>
     </DockPanel>
 </Window>
